@@ -8,6 +8,7 @@ from core import permissions
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.settings import api_settings
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny
 # Create your views here.
 
 class UserProfileViewSet(viewsets.ModelViewSet):
@@ -26,8 +27,7 @@ class TasksViewSet(viewsets.ModelViewSet):
      serializer_class = serializers.TasksSerializer
      queryset = models.Tasks.objects.all()
      permission_classes = (
-         permissions.UpdateOwnStatus,
-         IsAuthenticatedOrReadOnly
+         AllowAny,
      )
      
      def perform_create(self,serializer):
